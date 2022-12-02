@@ -27,9 +27,22 @@ function get_weather(city){
                 dataType: 'json',
                 success: function(response) {
                     console.log(response);
-                    var current_day = response.list[0].main.temp;
-                    var current_wind = response.list[0].wind.speed; 
-                    var current_humidity = response.list[0].main.humidity;
+                    $("#city_and_date").text(response.city.name);
+                    var icon_name = response.list[0].weather[0].icon;
+                    var imageURL =  "https://openweathermap.org/img/wn/" + icon_name + ".png";
+                    $("#icon").attr("src", imageURL);
+                    $("#today_temp").text("Temp: " + response.list[0].main.temp + "°F");
+                    $("#today_wind").text("Wind: " + response.list[0].wind.speed + " MPH");
+                    $("#today_humidity").text("Humidity: " + response.list[0].main.humidity + " %");
+                    for (var i = 1; i <= 5; i++) {
+                        var day = $("#day" + i);
+                        icon_name = response.list[i].weather[0].icon;
+                        imageURL =  "https://openweathermap.org/img/wn/" + icon_name + ".png";
+                        day.children(".icon").attr("src", imageURL);
+                        day.children(".temp").text("Temp: " + response.list[i].main.temp + "°F");
+                        day.children(".wind").text("Wind: " + response.list[i].wind.speed + " MPH");
+                        day.children(".humidity").text("Humidity: " + response.list[i].main.humidity + " %");
+                    }
                 }
             })
         }
