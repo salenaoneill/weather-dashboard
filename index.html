@@ -10,55 +10,63 @@
 </head>
 <body>
     <header class="container-fluid">
-        <h1 class="text-center">Weather Dashboard</h1>
+        <h1 class="text-center bg-primary">Weather Dashboard</h1>
     </header>
-    <div class="container-fluid">
-        <div class="row"></div>
-            <section class="col-lg-3" id="search_for_city">
+    <div class="container text-center">
+        <div class="row">
+            <section class="col border border-primary" id="search_for_city">
                 <div class="row">
-                    Search for a city: <input type="text" id="city_input">
+                    <h2>Search for a city:</h2>
+                    <input type="text" id="city_input">
                     <button id="search_button">Search</button>
                 </div>
                 <div id="search_history">                 
                 </div>
-            </div>
+            
             </section>
-            <section class="col-lg-6" id="current_weather"> 
-                <p id="city_and_date">Today's Forecast</p>
+            <section class="col border border-primary" id="current_weather"> 
+                <h2 id="city_and_date">Today's Forecast</h2>
                 <img id="icon" src="https://openweathermap.org/img/wn/10d.png">
-                <p id="today_temp">Temperature</p>
-                <p id="today_wind">Wind</p>
-                <p id="today_humidity">Humidity</p>
+                <p id="today_temp">Temp:</p>
+                <p id="today_wind">Wind:</p>
+                <p id="today_humidity">Humidity:</p>
             </section>
+        </div>
+        </div>
     </div>
-    <section>5-Day Forecast
-        <div>
-            <div id="day1">Forececast Day 1 
-                <div></div>
+    <section class="container text-center border border-primary">
+        <h2>5 Day Forecast</h2>
+        <div class="row">
+            <div class="col" id="day1">
+                <div class="date"></div>
                 <img class="icon" src="https://openweathermap.org/img/wn/10d.png">
                 <div class="col temp">Temp:</div>
                 <div class="col wind">Wind:</div>
                 <div class="col humidity">Humidity:</div>
             </div>
-            <div class="col" id="day2">Forececast Day 2 
+            <div class="col" id="day2"> 
+                <div class="date"></div>
                 <img class="icon" src="https://openweathermap.org/img/wn/10d.png">
                 <div class="col temp">Temp:</div>
                 <div class="col wind">Wind:</div>
                 <div class="col humidity">Humidity:</div>
             </div>
-            <div class="col" id="day3">Forececast Day 3 
+            <div class="col" id="day3">
+                <div class="date"></div>
                 <img class="icon" src="https://openweathermap.org/img/wn/10d.png">
                 <div class="col temp">Temp:</div>
                 <div class="col wind">Wind:</div>
                 <div class="col humidity">Humidity:</div>
             </div>
-            <div class="col" id="day4">Forececast Day 4
+            <div class="col" id="day4">
+                <div class="date"></div>
                 <img class="icon" src="https://openweathermap.org/img/wn/10d.png">
                 <div class="col temp">Temp:</div>
                 <div class="col wind">Wind:</div>
                 <div class="col humidity">Humidity:</div>
             </div>
-            <div class="col" id="day5">Forececast Day 5
+            <div class="col" id="day5">
+                <div class="date"></div>
                 <img class="icon" src="https://openweathermap.org/img/wn/10d.png">
                 <div class="col temp">Temp:</div>
                 <div class="col wind">Wind:</div>
