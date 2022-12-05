@@ -34,7 +34,7 @@ function get_weather(city){
         success: function(response) {
             var lat = response[0].lat;
             var lon = response[0].lon;
-            var weatherURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&cnt=40&appid=" + apiKey;
+            var weatherURL = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + apiKey;
             $.ajax({
                 type: 'GET',
                 url: weatherURL, 
@@ -42,27 +42,45 @@ function get_weather(city){
                 success: function(response) {
                     localStorage.setItem("saved_city_" + city, city);
                     get_search_history();
-                    $("#city_and_date").text(response.city.name + "(" + format_time_stamp(response.list[0].dt) + ")");
+                    $("#city_and_date").text(response.name + "(" + format_time_stamp(response.dt) + ")");
                     //displays current icon, temperature, wind, and humidity of searched city
-                    var icon_name = response.list[0].weather[0].icon;
+                    var icon_name = response.weather[0].icon;
                     var imageURL =  "https://openweathermap.org/img/wn/" + icon_name + ".png";
                     $("#icon").attr("src", imageURL);
-                    $("#today_temp").text("Temp: " + response.list[0].main.temp + "°F");
-                    $("#today_wind").text("Wind: " + response.list[0].wind.speed + " MPH");
-                    $("#today_humidity").text("Humidity: " + response.list[0].main.humidity + " %");
+                    $("#today_temp").text("Temp: " + response.main.temp + "°F");
+                    $("#today_wind").text("Wind: " + response.wind.speed + " MPH");
+                    $("#today_humidity").text("Humidity: " + response.main.humidity + " %");
+
+
+
+
+
+
                     //displays 5-day forecast icons, temperatures, wind, and humidities of searched city.
-                    var day_index = 1;
-                    for (var i = 1; i <= 39; i+=8) {
-                        var day = $("#day" + day_index);
-                        icon_name = response.list[i].weather[0].icon;
-                        imageURL =  "https://openweathermap.org/img/wn/" + icon_name + ".png";
-                        day.children(".date").text(format_time_stamp(response.list[i].dt));
-                        day.children(".icon").attr("src", imageURL);
-                        day.children(".temp").text("Temp: " + response.list[i].main.temp + "°F");
-                        day.children(".wind").text("Wind: " + response.list[i].wind.speed + " MPH");
-                        day.children(".humidity").text("Humidity: " + response.list[i].main.humidity + " %");
-                        day_index +=1;
-                    }
+                    weatherURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&cnt=40&appid=" + apiKey;
+                    $.ajax({
+                        type: 'GET',
+                        url: weatherURL, 
+                        dataType: 'json',
+                        success: function(response) {
+                            var day_index = 1;
+                            for (var i = 1; i <= 39; i+=8) {
+                                var day = $("#day" + day_index);
+                                icon_name = response.list[i].weather[0].icon;
+                                imageURL =  "https://openweathermap.org/img/wn/" + icon_name + ".png";
+                                day.children(".date").text(format_time_stamp(response.list[i].dt));
+                                day.children(".icon").attr("src", imageURL);
+                                day.children(".temp").text("Temp: " + response.list[i].main.temp + "°F");
+                                day.children(".wind").text("Wind: " + response.list[i].wind.speed + " MPH");
+                                day.children(".humidity").text("Humidity: " + response.list[i].main.humidity + " %");
+                                day_index +=1;
+                            }
+                        }
+                    });
+
+
+
+
                 }
             })
         }
