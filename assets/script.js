@@ -24,7 +24,7 @@ function format_time_stamp(timestamp){
 
 //grabs needed information from the open weather API
 function get_weather(city){
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + apiKey;
+    var requestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=5&appid=" + apiKey;
 
     $.ajax({
         type: 'GET',
