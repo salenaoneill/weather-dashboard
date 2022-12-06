@@ -16,3 +16,5 @@ To use this application, simply enter a city in the search bar and click the sea
 MIT License 
 
 ## Deployed Link
+
+https://salenaoneill.github.io/weather-dashboard/
